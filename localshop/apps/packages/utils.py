@@ -50,7 +50,8 @@ def validate_client(func):
         if request.user.is_authenticated():
             return func(request, *args, **kwargs)
 
-        if CIDR.objects.has_access(request.META['REMOTE_ADDR']):
+        if CIDR.objects.has_access(request.META['REMOTE_ADDR']) or\
+            CIDR.objects.has_access(request.META.get('HTTP_X_REAL_IP', None)):
             return func(request, *args, **kwargs)
         return HttpResponseForbidden('No permission')
     return _wrapper
