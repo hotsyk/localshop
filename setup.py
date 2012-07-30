@@ -15,7 +15,7 @@ install_requires = [
     'logan>=0.2.1',
     'gunicorn>=0.13.4',
     'python-daemon>=1.6',
-    'django-celery',
+    'django-celery<3.0',
     'django-model-utils>=1.0',
     'requests>=0.10',
     'netaddr==0.7.6',
